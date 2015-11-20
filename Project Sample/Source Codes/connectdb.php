@@ -1,0 +1,1 @@
+<?php connectDb("mysql.hostinger.web.tr","u507889671_alumn","u507889671_izu","0kJGNnYLZo");?>

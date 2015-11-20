@@ -1,0 +1,108 @@
+/* ===================================
+/* ===== IMPORT */
+
+@import "responsive.css";
+
+
+/* ===================================
+/* ===== BODY */
+
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+
+/* ===================================
+/* ===== TYPOGRAPHY */
+
+
+/* ===================================
+/* ===== HEADER */
+
+
+/* ===================================
+/* ===== NAVIGATION */
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+/* ===================================
+/* ===== SLIDER */
+
+.carousel-caption {
+    opacity: 0.8;
+    background: #333;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#carousel-example-captions {
+    height: 410px;
+    margin-bottom: 20px;
+}
+
+#carousel-example-captions .carousel-inner .item {
+    height: 410px;
+}
+
+#carousel-example-captions .carousel-inner .item img {
+    height: 410px;
+}
+
+/* ===================================
+/* ===== FOOTER */
+
+footer {
+  padding: 30px 0;
+}
+
+/* ===================================
+/* ===== HELPER */
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #a10108;
+    color: #ffffff;
+    padding: 5em 5em;
+    text-align: center;
+}
+
+.chromeframe a {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.placeholder {
+    color: #aaa;
+}
+
+.apply-hover {
+    -webkit-transition: opacity .2s ease-in-out;
+    -moz-transition: opacity .2s ease-in-out;
+    -ms-transition: opacity .2s ease-in-out;
+    -o-transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out;
+    opacity: 1;
+}
+
+.apply-hover:hover {
+    zoom: 1;
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+
+#upcoming-events .list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #ed1c24;
+    border-color: #ed1c24;
+}
