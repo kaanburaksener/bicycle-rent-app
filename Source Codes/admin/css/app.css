@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+html {}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none!important;
+}
+
+body {}
+
+header {}
+
+footer {}
+
+.row {
+	margin: 0;
+}
+
+.no-padding {
+	padding: 0;
+}

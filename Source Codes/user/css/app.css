@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+html {}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section, summary {
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none!important;
+}
+
+body {
+	text-transform: uppercase;
+}
+
+header {}
+
+footer {}
+
+.row {
+	margin: 0;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.btn {
+	border-radius: 500px;
+}
+
+.btn-custom {
+	background: #FFF;
+    color: #333;	
+}
+
+.btn-custom:hover {
+	background: #16e58a;
+	color: #fff;
+}
