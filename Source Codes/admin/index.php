@@ -29,7 +29,6 @@
     <![endif]-->
 </head>
 <body>
-
     <div id="wrapper">
 
         <!-- Navigation -->
@@ -87,20 +86,6 @@
                         </li>
 
                         <li>
-                            <a href="#"><i class="fa fa-minus fa-fw"></i> Bicycle Outlets<span class="fa arrow"></span></a>
-                            
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="modules/bicycle-outlet/bicycle-outlet.php"><i class="fa fa-list"></i> View All Bicycle Outlets</a>
-                                </li>
-                                <li>
-                                    <a href="modules/bicycle-outlet/add-bicycle-outlet.php"><i class="fa fa-plus"></i> Add a New Bicycle Outlet</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-
-                        <li>
                             <a href="#"><i class="fa fa-minus fa-fw"></i> Bicycles<span class="fa arrow"></span></a>
                             
                             <ul class="nav nav-second-level">
@@ -123,6 +108,20 @@
                                 </li>
                                 <li>
                                     <a href="modules/bicycle-brand/add-bicycle-brand.php"><i class="fa fa-plus"></i> Add a New Bicycle Brand</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+
+                        <li>
+                            <a href="#"><i class="fa fa-minus fa-fw"></i> Bicycle Outlets<span class="fa arrow"></span></a>
+                            
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="modules/bicycle-outlet/bicycle-outlet.php"><i class="fa fa-list"></i> View All Bicycle Outlets</a>
+                                </li>
+                                <li>
+                                    <a href="modules/bicycle-outlet/add-bicycle-outlet.php"><i class="fa fa-plus"></i> Add a New Bicycle Outlet</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

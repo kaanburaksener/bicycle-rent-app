@@ -27,3 +27,17 @@ footer {}
 .no-padding {
 	padding: 0;
 }
+
+.btn {
+	border-radius: 500px;
+}
+
+.btn-custom-save {
+    background: #16e58a;
+	color: #fff;
+}
+
+.btn-custom-save:hover {
+	background: #FFF;
+    color: #333;
+}
