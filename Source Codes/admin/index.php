@@ -28,6 +28,10 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
+<?php include 'functions.php'; ?>
+<?php include 'connectdb.php'; ?>
+
 <body>
     <div id="wrapper">
 
@@ -155,6 +159,9 @@
                 <!-- /.col-lg-12 -->
             </div>
 
+            <?php $numberOfBicycleOutlets = getNumberOfBicycleOutlets();?>
+            <?php $numberOfBicycleOutlets = mysql_fetch_array($numberOfBicycleOutlets);?>
+
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -165,13 +172,16 @@
                                     <i class="fa fa-map-marker fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">5</div>
+                                    <div class="huge"><?php echo($numberOfBicycleOutlets[0]);?></div>
                                     <div>Bicycle Outlets</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <?php $numberOfBicycles = getNumberOfBicycles();?>
+                <?php $numberOfBicycles = mysql_fetch_array($numberOfBicycles);?>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-green">
@@ -181,13 +191,16 @@
                                     <i class="fa fa-bicycle fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">50</div>
+                                    <div class="huge"><?php echo($numberOfBicycles[0]);?></div>
                                     <div>Bicycles</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <?php $numberOfBicycleBrands = getNumberOfBicycleBrands();?>
+                <?php $numberOfBicycleBrands = mysql_fetch_array($numberOfBicycleBrands);?>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-yellow">
@@ -197,13 +210,16 @@
                                     <i class="fa fa-tags fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">24</div>
+                                    <div class="huge"><?php echo($numberOfBicycleBrands[0]);?></div>
                                     <div>Bicycle Brands</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <?php $numberOfBicycleTypes = getNumberOfBicycleTypes();?>
+                <?php $numberOfBicycleTypes = mysql_fetch_array($numberOfBicycleTypes);?>
 
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-red">
@@ -213,7 +229,7 @@
                                     <i class="fa fa-sitemap fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">4</div>
+                                    <div class="huge"><?php echo($numberOfBicycleTypes[0]);?></div>
                                     <div>Bicycle Type</div>
                                 </div>
                             </div>

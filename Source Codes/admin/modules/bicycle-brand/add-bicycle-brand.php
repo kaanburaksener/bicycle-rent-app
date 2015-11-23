@@ -19,6 +19,9 @@
     <!-- Custom CSS -->
     <link href="../../css/app.css" rel="stylesheet">
 
+    <!-- Custom Fonts -->
+    <link href="../../css/font-awesome.min.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -27,6 +30,8 @@
     <![endif]-->
 </head>
 <body>
+
+    <?php include '../../blocks/main-menu.php'; ?>
 
     <div class="container">
         <div class="jumbotron">

@@ -26,9 +26,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
+<?php include '../../functions.php'; ?>
+<?php include '../../connectdb.php'; ?>
+
 <body>
-	<?php include '../../functions.php'; ?>
-	<?php include '../../connectdb.php'; ?>
+	
 	<?php
 		//Get data from the former page via POST method
 		$bicycle_brand_name = $_POST["bicycle-brand-name"];
@@ -39,5 +42,6 @@
 		//Go to the page which shows the list of the bicycle brands
 		header("Location: bicycle-brand.php");
 	?>
+    
 </body>
 </html>

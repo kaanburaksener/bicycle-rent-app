@@ -41,3 +41,42 @@ footer {}
 	background: #FFF;
     color: #333;
 }
+
+/* Admin Panel Main Menu */
+
+#admin-panel-main-menu {
+	background: #fff;
+	height: 65px;
+	border-bottom: 3px solid #411871;
+}
+
+#admin-panel-main-menu a {
+	color: #411871;
+	display: block;
+	margin-top: 5px;
+	font-style: italic;
+}
+
+#admin-panel-main-menu a > i {
+	color: #16e58a;
+}
+
+#admin-panel-main-menu a:hover > i {
+	color: #411871;
+}
+
+td.edit-option {
+	width: 60px;
+}
+
+td.edit-option a {
+	color: #3498db;
+}
+
+td.delete-option {
+	width: 73px;
+}
+
+td.delete-option a {
+	color: #e74c3c;
+}

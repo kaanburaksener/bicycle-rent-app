@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 20, 2015 at 02:45 PM
+-- Generation Time: Nov 24, 2015 at 12:09 AM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -29,7 +29,21 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `bicycle_brand` (
 `id` int(10) NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+
+--
+-- Dumping data for table `bicycle_brand`
+--
+
+INSERT INTO `bicycle_brand` (`id`, `name`) VALUES
+(3, 'Bianchi'),
+(9, 'Cannondale'),
+(8, 'Cervelo'),
+(2, 'Fuji'),
+(4, 'Giant'),
+(7, 'Salsa'),
+(5, 'Specialized'),
+(1, 'Trek');
 
 -- --------------------------------------------------------
 
@@ -50,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `bicycle_disposal` (
 
 CREATE TABLE IF NOT EXISTS `bicycle_info` (
 `id` int(10) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `brand_id` int(10) NOT NULL,
   `type_id` int(10) NOT NULL,
   `gear_number` int(1) NOT NULL,
@@ -100,7 +115,17 @@ CREATE TABLE IF NOT EXISTS `bicycle_rental_order` (
 CREATE TABLE IF NOT EXISTS `bicycle_type` (
 `id` int(10) NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `bicycle_type`
+--
+
+INSERT INTO `bicycle_type` (`id`, `name`) VALUES
+(3, 'City'),
+(1, 'Road'),
+(2, 'Touring'),
+(4, 'Trekking');
 
 -- --------------------------------------------------------
 
@@ -125,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `outlet_customer` (
 -- Indexes for table `bicycle_brand`
 --
 ALTER TABLE `bicycle_brand`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `U_bicycle_brand_name` (`name`);
 
 --
 -- Indexes for table `bicycle_disposal`
@@ -137,13 +162,13 @@ ALTER TABLE `bicycle_disposal`
 -- Indexes for table `bicycle_info`
 --
 ALTER TABLE `bicycle_info`
- ADD PRIMARY KEY (`id`), ADD KEY `FK_brand_id` (`brand_id`), ADD KEY `FK_bicyle_type_id` (`type_id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `U_bicycle_info` (`name`,`brand_id`,`type_id`,`gear_number`,`wheel_size`), ADD KEY `FK_brand_id` (`brand_id`), ADD KEY `FK_bicyle_type_id` (`type_id`);
 
 --
 -- Indexes for table `bicycle_outlet`
 --
 ALTER TABLE `bicycle_outlet`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `U_bicycle_outlet` (`name`,`address`);
 
 --
 -- Indexes for table `bicycle_rental_order`
@@ -155,7 +180,7 @@ ALTER TABLE `bicycle_rental_order`
 -- Indexes for table `bicycle_type`
 --
 ALTER TABLE `bicycle_type`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `U_bicycle_type` (`name`);
 
 --
 -- Indexes for table `outlet_customer`
@@ -171,7 +196,7 @@ ALTER TABLE `outlet_customer`
 -- AUTO_INCREMENT for table `bicycle_brand`
 --
 ALTER TABLE `bicycle_brand`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `bicycle_info`
 --
@@ -191,7 +216,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `bicycle_type`
 --
 ALTER TABLE `bicycle_type`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `outlet_customer`
 --
