@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2015 at 12:09 AM
+-- Generation Time: Nov 24, 2015 at 11:30 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `bicycle_brand` (
 `id` int(10) NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `bicycle_brand`
@@ -37,7 +37,6 @@ CREATE TABLE IF NOT EXISTS `bicycle_brand` (
 
 INSERT INTO `bicycle_brand` (`id`, `name`) VALUES
 (3, 'Bianchi'),
-(9, 'Cannondale'),
 (8, 'Cervelo'),
 (2, 'Fuji'),
 (4, 'Giant'),
@@ -89,16 +88,32 @@ CREATE TABLE IF NOT EXISTS `bicycle_outlet` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bicycle_outlet_user_info`
+--
+
+CREATE TABLE IF NOT EXISTS `bicycle_outlet_user_info` (
+`id` int(10) NOT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `password` char(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `bicycle_outlet_id` int(10) NOT NULL,
+  `user_role_id` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `bicycle_rental_order`
 --
 
 CREATE TABLE IF NOT EXISTS `bicycle_rental_order` (
 `id` int(10) NOT NULL,
-  `rented_bicycle_outlet_id` int(10) NOT NULL,
+  `rented_bicycle_outlet_user_id` int(10) NOT NULL,
   `outlet_customer_id` int(10) NOT NULL,
   `bicycle_info_id` int(10) NOT NULL,
   `rented_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `returned_bicycle_outlet_id` int(10) DEFAULT NULL,
+  `returned_bicycle_outlet_user_id` int(10) NOT NULL,
   `returned_time` timestamp NULL DEFAULT NULL,
   `hour_discount` int(2) DEFAULT NULL,
   `customer_discount` int(2) DEFAULT NULL,
@@ -142,6 +157,17 @@ CREATE TABLE IF NOT EXISTS `outlet_customer` (
   `cumulative_rent_hours` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_role`
+--
+
+CREATE TABLE IF NOT EXISTS `user_role` (
+`id` int(10) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
 --
 -- Indexes for dumped tables
 --
@@ -171,10 +197,16 @@ ALTER TABLE `bicycle_outlet`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `U_bicycle_outlet` (`name`,`address`);
 
 --
+-- Indexes for table `bicycle_outlet_user_info`
+--
+ALTER TABLE `bicycle_outlet_user_info`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`), ADD KEY `FK_bicycle_outlet_user_info_bicycle_outlet_id` (`bicycle_outlet_id`), ADD KEY `FK_bicycle_outlet_user_info_user_role_id` (`user_role_id`);
+
+--
 -- Indexes for table `bicycle_rental_order`
 --
 ALTER TABLE `bicycle_rental_order`
- ADD PRIMARY KEY (`id`), ADD KEY `FK_bicyle_rental_order_rented_bicycle_outlet_id` (`rented_bicycle_outlet_id`), ADD KEY `FK_bicyle_returned_order_rented_bicycle_outlet_id` (`returned_bicycle_outlet_id`), ADD KEY `FK_bicyle_rental_order_outlet_customer_id` (`outlet_customer_id`), ADD KEY `FK_bicyle_rental_order_bicycle_info_id` (`bicycle_info_id`), ADD KEY `id` (`id`,`rented_bicycle_outlet_id`,`outlet_customer_id`,`bicycle_info_id`,`rented_time`,`returned_bicycle_outlet_id`,`returned_time`,`hour_discount`,`customer_discount`,`sum_before_discount`,`total_order_sum`);
+ ADD PRIMARY KEY (`id`), ADD KEY `FK_bicyle_rental_order_outlet_customer_id` (`outlet_customer_id`), ADD KEY `FK_bicyle_rental_order_bicycle_info_id` (`bicycle_info_id`), ADD KEY `id` (`id`,`rented_bicycle_outlet_user_id`,`outlet_customer_id`,`bicycle_info_id`,`rented_time`,`returned_bicycle_outlet_user_id`,`returned_time`,`hour_discount`,`customer_discount`,`sum_before_discount`,`total_order_sum`), ADD KEY `FK_bicyle_rental_order_rented_bicycle_outlet_user_id` (`rented_bicycle_outlet_user_id`), ADD KEY `FK_bicyle_rental_order_returned_bicycle_outlet_user_id` (`returned_bicycle_outlet_user_id`);
 
 --
 -- Indexes for table `bicycle_type`
@@ -189,6 +221,12 @@ ALTER TABLE `outlet_customer`
  ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_role`
+--
+ALTER TABLE `user_role`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -196,7 +234,7 @@ ALTER TABLE `outlet_customer`
 -- AUTO_INCREMENT for table `bicycle_brand`
 --
 ALTER TABLE `bicycle_brand`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `bicycle_info`
 --
@@ -207,6 +245,11 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `bicycle_outlet`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `bicycle_outlet_user_info`
+--
+ALTER TABLE `bicycle_outlet_user_info`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `bicycle_rental_order`
 --
@@ -221,6 +264,11 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 -- AUTO_INCREMENT for table `outlet_customer`
 --
 ALTER TABLE `outlet_customer`
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `user_role`
+--
+ALTER TABLE `user_role`
 MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
@@ -241,12 +289,20 @@ ADD CONSTRAINT `FK_bicyle_type_id` FOREIGN KEY (`type_id`) REFERENCES `bicycle_t
 ADD CONSTRAINT `FK_brand_id` FOREIGN KEY (`brand_id`) REFERENCES `bicycle_brand` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `bicycle_outlet_user_info`
+--
+ALTER TABLE `bicycle_outlet_user_info`
+ADD CONSTRAINT `FK_bicycle_outlet_user_info_bicycle_outlet_id` FOREIGN KEY (`bicycle_outlet_id`) REFERENCES `bicycle_outlet` (`id`),
+ADD CONSTRAINT `FK_bicycle_outlet_user_info_user_role_id` FOREIGN KEY (`user_role_id`) REFERENCES `user_role` (`id`);
+
+--
 -- Constraints for table `bicycle_rental_order`
 --
 ALTER TABLE `bicycle_rental_order`
 ADD CONSTRAINT `FK_bicyle_rental_order_bicycle_info_id` FOREIGN KEY (`bicycle_info_id`) REFERENCES `bicycle_info` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `FK_bicyle_rental_order_outlet_customer_id` FOREIGN KEY (`outlet_customer_id`) REFERENCES `outlet_customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `FK_bicyle_rental_order_rented_bicycle_outlet_id` FOREIGN KEY (`rented_bicycle_outlet_id`) REFERENCES `bicycle_outlet` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_bicyle_rental_order_rented_bicycle_outlet_user_id` FOREIGN KEY (`rented_bicycle_outlet_user_id`) REFERENCES `bicycle_outlet_user_info` (`id`),
+ADD CONSTRAINT `FK_bicyle_rental_order_returned_bicycle_outlet_user_id` FOREIGN KEY (`returned_bicycle_outlet_user_id`) REFERENCES `bicycle_outlet_user_info` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
