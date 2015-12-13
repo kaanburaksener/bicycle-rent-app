@@ -54,7 +54,7 @@
                 <tbody>
                     <?php $lineNumber = 1;?>
                     <?php $allBicycleBrands = getAllBicycleBrands();?>
-                    <?php while($bicycleBrand= mysql_fetch_array($allBicycleBrands)):?>
+                    <?php while($bicycleBrand = mysql_fetch_array($allBicycleBrands)):?>
 
                     <tr>
                         <th scope="row"><?php echo $lineNumber; ?></th>

@@ -25,6 +25,13 @@
     BICYCLE
     ****************************/
 
+    //Adds a new bicycle to the database
+
+    function addNewBicycle($name, $brand_id, $type_id, $gear_number, $wheel_size, $rent_price_hour, $rent_discount_hour, $rent_discount_percent) {
+      $query = "INSERT INTO bicycle_info (name, brand_id, type_id, gear_number, wheel_size, rent_price_hour, rent_discount_hour, rent_discount_percent) VALUES ('".$name."','".$brand_id."', '".$type_id."', '".$gear_number."', '".$wheel_size."', '".$rent_price_hour."', '".$rent_discount_hour."', '".$rent_discount_percent."')" ; 
+      $result = mysql_query($query) or  trigger_error(mysql_error()." ".$query);
+    }
+
     //Gets the number of all bicycles from the database
 
     function getNumberOfBicycles(){
@@ -32,6 +39,38 @@
       $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
 
       return $result;
+    }
+
+    //Gets a specific bicycle from the database
+
+    function getBicycle($id){
+      $query = "SELECT * FROM bicycle_info WHERE id='".$id."'";
+      $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+      return $result;
+    }
+
+    //Gets all the bicycles from the database
+
+    function getAllBicycles(){
+      $query = "SELECT * FROM bicycle_info";
+      $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+      return $result;
+    }
+
+    //Deletes a bicycle from the database
+
+    function deleteBicycle($id){
+      $query ="DELETE FROM bicycle_info WHERE id='".$id."'";
+      $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+    }
+
+    //Updates a bicycle on the database
+
+    function updateBicycle($id, $name, $brand_id, $type_id, $gear_number, $wheel_size, $rent_price_hour, $rent_discount_hour, $rent_discount_percent){
+      $query = "UPDATE bicycle_info SET name='".$name."', brand_id='".$brand_id."', type_id='".$type_id."', gear_number='".$gear_number."', wheel_size='".$wheel_size."', rent_price_hour='".$rent_price_hour."', rent_discount_hour='".$rent_discount_hour."', rent_discount_percent='".$rent_discount_percent."'  WHERE id='".$id."'";
+      $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
     }
 
     /***************************

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2015 at 11:30 PM
+-- Generation Time: Dec 13, 2015 at 05:32 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `bicycle_info` (
   `type_id` int(10) NOT NULL,
   `gear_number` int(1) NOT NULL,
   `wheel_size` int(2) NOT NULL,
-  `rental_price_hour` decimal(10,0) NOT NULL,
+  `rent_price_hour` decimal(10,0) NOT NULL,
   `rent_discount_hour` int(2) NOT NULL,
   `rent_discount_percent` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -116,7 +116,6 @@ CREATE TABLE IF NOT EXISTS `bicycle_rental_order` (
   `returned_bicycle_outlet_user_id` int(10) NOT NULL,
   `returned_time` timestamp NULL DEFAULT NULL,
   `hour_discount` int(2) DEFAULT NULL,
-  `customer_discount` int(2) DEFAULT NULL,
   `sum_before_discount` decimal(10,0) DEFAULT NULL,
   `total_order_sum` decimal(10,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -145,6 +144,17 @@ INSERT INTO `bicycle_type` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `discount_rate`
+--
+
+CREATE TABLE IF NOT EXISTS `discount_rate` (
+  `hour` int(11) NOT NULL,
+  `discount_rate` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `outlet_customer`
 --
 
@@ -153,8 +163,7 @@ CREATE TABLE IF NOT EXISTS `outlet_customer` (
   `first_name` varchar(20) NOT NULL,
   `last_name` varchar(20) NOT NULL,
   `address` varchar(100) NOT NULL,
-  `phone` varchar(11) NOT NULL,
-  `cumulative_rent_hours` int(10) NOT NULL
+  `phone` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -206,13 +215,19 @@ ALTER TABLE `bicycle_outlet_user_info`
 -- Indexes for table `bicycle_rental_order`
 --
 ALTER TABLE `bicycle_rental_order`
- ADD PRIMARY KEY (`id`), ADD KEY `FK_bicyle_rental_order_outlet_customer_id` (`outlet_customer_id`), ADD KEY `FK_bicyle_rental_order_bicycle_info_id` (`bicycle_info_id`), ADD KEY `id` (`id`,`rented_bicycle_outlet_user_id`,`outlet_customer_id`,`bicycle_info_id`,`rented_time`,`returned_bicycle_outlet_user_id`,`returned_time`,`hour_discount`,`customer_discount`,`sum_before_discount`,`total_order_sum`), ADD KEY `FK_bicyle_rental_order_rented_bicycle_outlet_user_id` (`rented_bicycle_outlet_user_id`), ADD KEY `FK_bicyle_rental_order_returned_bicycle_outlet_user_id` (`returned_bicycle_outlet_user_id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `FK_bicyle_rental_order_outlet_customer_id` (`outlet_customer_id`), ADD KEY `FK_bicyle_rental_order_bicycle_info_id` (`bicycle_info_id`), ADD KEY `id` (`id`,`rented_bicycle_outlet_user_id`,`outlet_customer_id`,`bicycle_info_id`,`rented_time`,`returned_bicycle_outlet_user_id`,`returned_time`,`hour_discount`,`sum_before_discount`,`total_order_sum`), ADD KEY `FK_bicyle_rental_order_rented_bicycle_outlet_user_id` (`rented_bicycle_outlet_user_id`), ADD KEY `FK_bicyle_rental_order_returned_bicycle_outlet_user_id` (`returned_bicycle_outlet_user_id`);
 
 --
 -- Indexes for table `bicycle_type`
 --
 ALTER TABLE `bicycle_type`
  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `U_bicycle_type` (`name`);
+
+--
+-- Indexes for table `discount_rate`
+--
+ALTER TABLE `discount_rate`
+ ADD UNIQUE KEY `hour` (`hour`);
 
 --
 -- Indexes for table `outlet_customer`
