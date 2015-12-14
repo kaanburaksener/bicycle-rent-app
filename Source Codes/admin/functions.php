@@ -72,7 +72,7 @@
       $query = "UPDATE bicycle_info SET name='".$name."', brand_id='".$brand_id."', type_id='".$type_id."', gear_number='".$gear_number."', wheel_size='".$wheel_size."', rent_price_hour='".$rent_price_hour."', rent_discount_hour='".$rent_discount_hour."', rent_discount_percent='".$rent_discount_percent."'  WHERE id='".$id."'";
       $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
     }
-
+	
     /***************************
     BICYCLE BRAND
     ****************************/
@@ -229,10 +229,32 @@
       $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
     }
 
+	/***************************
+	USER ROLE
+    ****************************/
+	
+	function addNewUserRole($name) {
+		$query = "INSERT INTO user_role (name) VALUES ('".$name."')";
+		$result = mysql_query($query) or  trigger_error(mysql_error()." ".$query);
+	}
+	function getAllUserRoles() {
+		$query = "SELECT * FROM user_role ORDER BY name ASC";
+		$result = mysql_query($query) or  trigger_error(mysql_error()." ".$query);
+		
+		return $result;
+	}
+	function deleteUserRole($id) {
+		$query = "DELETE FROM user_role WHERE id='".id$."'";
+		$result = mysql_query($query) or  trigger_error(mysql_error()." ".$query);
+	}
+	function updateUser ($id, $name) {
+		$query = "UPDATE user_role SET name='""' WHERE id='".$id."'";
+		$result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+	}
     /***************************
     HELPER FUNCTIONS
     ****************************/
-
+	
     //Converts the given date to YMD format
   	function convertDateFormat($date){
   		$date = date('Y-m-d', strtotime($date));
