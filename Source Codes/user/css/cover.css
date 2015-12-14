@@ -62,7 +62,7 @@ body {
  * Header
  */
 .masthead-brand {
-  margin-top: 10px;
+  margin-top: -5px;
   margin-bottom: 10px;
 }
 
@@ -75,12 +75,17 @@ body {
 .masthead-nav > li > a {
   padding-right: 0;
   padding-left: 0;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff; /* IE8 proofing */
   color: rgba(255,255,255,.85);
   border-bottom: 2px solid transparent;
 }
+
+.masthead-nav > li > a:hover {
+  color: #16e58a; /* IE8 proofing */
+}
+
 .masthead-nav > li > a:hover,
 .masthead-nav > li > a:focus {
   background-color: transparent;
@@ -88,11 +93,17 @@ body {
   border-bottom-color: rgba(255,255,255,.25);
 }
 .masthead-nav > .active > a,
-.masthead-nav > .active > a:hover,
 .masthead-nav > .active > a:focus {
   color: #fff;
   border-bottom-color: #fff;
 }
+
+.masthead-nav > .active > a:hover > i {
+  color: #16e58a;
+  border-bottom-color: #16e58a; 
+}
+
+
 
 @media (min-width: 768px) {
   .masthead-brand {
