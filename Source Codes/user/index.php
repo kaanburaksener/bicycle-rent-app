@@ -18,6 +18,9 @@
     <!-- Custom CSS -->
     <link href="css/app.css" rel="stylesheet">
 
+    <!-- Font Awesome CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -31,14 +34,13 @@
         <div class="cover-container">
           <div class="masthead clearfix">
             <div class="inner">
-              <!--<h3 class="masthead-brand">Cover</h3>-->
-              <img class="masthead-brand" src="img/logo.png">
+              <a href="index.php" class="masthead-brand"><i class="fa fa-bicycle fa-5x"></i></a>
               
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Sign Up</a></li>
-                  <li><a href="#">Log In</a></li>
+                  <li class="active"><a href="index.php">Home</a></li>
+                  <li><a href="signup.php">Sign Up</a></li>
+                  <li><a href="login.php">Log In</a></li>
                 </ul>
               </nav>
             </div>
@@ -50,7 +52,7 @@
             <p class="lead">Monitor your bicycle shops easily!</p>
             
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-custom">Register!</a>
+              <a href="signup.php" class="btn btn-lg btn-custom">Register!</a>
             </p>
           </div>
 
