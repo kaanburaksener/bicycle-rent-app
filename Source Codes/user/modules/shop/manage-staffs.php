@@ -136,6 +136,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /Add New Staff -->
 
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab" id="heading2">
@@ -179,6 +180,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- /Display All Staff -->
+
+
                             </div>
                             <!-- /#accordion -->
                         </div>

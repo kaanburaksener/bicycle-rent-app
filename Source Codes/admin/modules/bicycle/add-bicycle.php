@@ -112,16 +112,16 @@
 
                 <!-- Bicycle Name -->
                 <div class="form-group">
-                    <label for="rent-price-hour">Rental Discount Hour</label>
+                    <label for="rent-discount-hour">Rental Discount Hour</label>
                 
-                    <input type="text" class="form-control" id="rent-price-hour" name="rent-price-hour" placeholder="Enter Rental price hour...">
+                    <input type="text" class="form-control" id="rent-discount-hour" name="rent-discount-hour" placeholder="Enter Rental discount hour...">
                 </div>
 
                 <!-- Bicycle Name -->
                 <div class="form-group">
-                    <label for="rent-price-hour">Rental Price Hour</label>
+                    <label for="ent-discount-percent">Rental Discount Percent</label>
                 
-                    <input type="text" class="form-control" id="rent-price-hour" name="rent-price-hour" placeholder="Enter Rental price hour...">
+                    <input type="text" class="form-control" id="rent-discount-percent" name="rent-discount-percent" placeholder="Enter Rental discount percent...">
                 </div>
 
                 <button type="submit" class="btn btn-custom-save">Save</button>

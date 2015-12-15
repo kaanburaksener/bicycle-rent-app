@@ -110,7 +110,7 @@
 
                                 <div class="col-sm-2 no-padding">
                                     <div id="create-order" class="func-button">
-                                        <a href="add-new-order.php"><i class="fa fa-plus fa-3x"></i> <br> Create Order</a>    
+                                        <a href="add-new-order.php"><i class="fa fa-shopping-cart fa-3x"></i> <br> Manage Orders</a>    
                                     </div>
                                 </div>
 

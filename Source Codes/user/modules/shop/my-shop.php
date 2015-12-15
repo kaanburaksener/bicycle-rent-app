@@ -114,7 +114,7 @@
 
                                             <hr>
 
-                                            <a href="shop.php" class="btn btn-default">Go to shop!</a>
+                                            <a href="shop.php" class="btn btn-default">Go to shop</a>
                                         </div>
                                     </div>
                                 </div>
