@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 16, 2015 at 04:52 AM
+-- Generation Time: Dec 16, 2015 at 01:57 PM
 -- Server version: 5.6.20
 -- PHP Version: 5.5.15
 
@@ -454,7 +454,7 @@ CREATE TABLE IF NOT EXISTS `bicycle_outlet` (
 `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `bicycle_outlet`
@@ -505,7 +505,7 @@ INSERT INTO `bicycle_outlet_user_info` (`id`, `first_name`, `last_name`, `email`
 (20, 'Justin', 'Stevens', 'jstevens4@apple.com', 'I1s6U6PHWDB', 1, 2),
 (21, 'Eric', 'Evans', 'eevans5@cbsnews.com', 'zTSxcB44dYa', 1, 2),
 (22, 'Julia', 'Gonzalez', 'jgonzalez6@springer.com', 'I9i84Cnoj', 1, 1),
-(23, 'Phyllis', 'Hall', 'phall7@sohu.com', 'ubghtf', 1, 2),
+(23, 'Phyllis', 'Hall', 'phall7@sohu.com', '12345', 1, 2),
 (24, 'Karen', 'Fields', 'kfields8@walmart.com', 'Id27iZ25NS1', 1, 2),
 (25, 'Laura', 'Richards', 'lrichards9@yahoo.com', 'j3GoPaRkOnfW', 1, 2),
 (26, 'Lois', 'Owens', 'lowensa@tripod.com', 'hFVKqFteF0WM', 11, 1),
@@ -565,7 +565,7 @@ CREATE TABLE IF NOT EXISTS `bicycle_rental_order` (
   `hour_discount` int(2) DEFAULT NULL,
   `sum_before_discount` decimal(10,0) DEFAULT NULL,
   `total_order_sum` decimal(10,0) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
 -- Dumping data for table `bicycle_rental_order`
@@ -575,7 +575,14 @@ INSERT INTO `bicycle_rental_order` (`id`, `rented_bicycle_outlet_user_id`, `outl
 (5, 1, 1, 1, '2015-12-15 03:26:12', 1, '2015-12-15 10:25:59', 105, '2100', '1995'),
 (6, 1, 1, 1, '2015-12-15 11:43:46', 1, '2015-12-16 11:40:36', 252, '5040', '4788'),
 (7, 1, 1, 2, '2015-12-15 15:06:19', 1, '2015-12-16 15:05:11', 360, '2400', '2040'),
-(8, 1, 1, 2, '2015-12-16 03:49:33', 1, '2015-12-18 06:45:27', 795, '5300', '4505');
+(8, 1, 1, 2, '2015-12-16 03:49:33', 1, '2015-12-18 06:45:27', 795, '5300', '4505'),
+(9, 1, 8, 8, '2015-12-16 12:03:09', 10, '2015-12-16 19:00:01', 233, '2331', '2098'),
+(10, 1, 14, 6, '2015-12-16 12:04:36', 10, '2015-12-22 10:00:29', 2840, '28400', '25560'),
+(11, 1, 3, 3, '2015-12-16 12:04:46', 10, '2015-12-16 13:05:39', 0, '150', '150'),
+(12, 10, 2, 7, '2015-12-16 12:04:24', 10, '2015-12-16 18:05:17', 0, '1272', '1272'),
+(13, 23, 19, 4, '2015-12-16 12:07:41', 23, '2015-12-16 19:25:34', 140, '2800', '2660'),
+(14, 23, 25, 3, '2015-12-16 12:08:11', 23, '2015-12-16 15:05:05', 0, '450', '450'),
+(15, 23, 35, 9, '2015-12-16 12:09:03', 23, '2015-12-17 00:05:48', 286, '5712', '5426');
 
 -- --------------------------------------------------------
 
@@ -762,7 +769,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=165;
 -- AUTO_INCREMENT for table `bicycle_outlet`
 --
 ALTER TABLE `bicycle_outlet`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `bicycle_outlet_user_info`
 --
@@ -772,7 +779,7 @@ MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=65;
 -- AUTO_INCREMENT for table `bicycle_rental_order`
 --
 ALTER TABLE `bicycle_rental_order`
-MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `bicycle_type`
 --
