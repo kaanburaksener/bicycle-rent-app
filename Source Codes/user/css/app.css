@@ -32,6 +32,7 @@ footer {}
 
 .btn {
 	border-radius: 500px;
+	border:0;
 }
 
 .btn-custom {
@@ -41,6 +42,36 @@ footer {}
 
 .btn-custom:hover {
 	background: #16e58a;
+	color: #fff;
+}
+
+.btn-custom2 {
+	background: #E91E63;
+    color: #fff;	
+}
+
+.btn-custom2:hover {
+	background: #EC407A;
+	color: #fff;
+}
+
+.btn-custom3 {
+	background: #2196F3;
+    color: #fff;	
+}
+
+.btn-custom3:hover {
+	background: #42A5F5;
+	color: #fff;
+}
+
+.btn-custom4 {
+	background: #00E676;
+    color: #fff;	
+}
+
+.btn-custom4:hover {
+	background: #69F0AE;
 	color: #fff;
 }
 
@@ -56,6 +87,22 @@ a.navbar-brand > i {
 
 .no-margin {
 	margin: 0!important;
+}
+
+.remove {
+	color: #F44336;
+}
+
+.remove:hover {
+	color: #EF5350;
+}
+
+.finalize {
+	color: #00E676;
+}
+
+.finalize:hover {
+	color: #69F0AE;
 }
 
 /* SHOP */
@@ -97,6 +144,7 @@ a.navbar-brand > i {
 	display: block;
 	color: #fff;
 	font-size: 15px;
+	font-weight: bold;
 }
 
 #edit-shop {
@@ -119,6 +167,25 @@ a.navbar-brand > i {
 	background-color: #ae38ed;
 }
 
+span.statistic-result {
+	font-size: 2em;
+	font-weight: bold;
+}
 
+.func-button p {
+	font-weight: bold;
+	color: #fff;
+}
 
+#staff-list {
+	margin-top: 20px;
+}
 
+#staff-list li {
+	margin: 10px 0!important;
+	font-size: 12px;
+}
+
+#staff-list li span.role {
+	font-size: 10px;
+}

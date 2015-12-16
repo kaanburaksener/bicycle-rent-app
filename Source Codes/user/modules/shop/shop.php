@@ -102,7 +102,7 @@
 
                                 <div class="col-sm-2 no-padding">
                                     <div id="statistics" class="func-button">
-                                        <a href="statistics.php"><i class="fa fa-pie-chart fa-3x"></i> <br> Statistics</a>    
+                                        <a href="../statistic/statistics.php"><i class="fa fa-pie-chart fa-3x"></i> <br> Statistics</a>    
                                     </div>
                                 </div>
 

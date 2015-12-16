@@ -176,7 +176,7 @@
                                                
                                                 <input type="hidden" id="bicycle-outlet-id" name="bicycle-outlet-id" class="form-control" value="<?php echo($shop['id']);?>">
 
-                                                <button type="submit" class="btn btn-custom-save">Add Bicycle <i class="fa fa-bicycle"></i></button>
+                                                <button type="submit" class="btn btn-custom4">Add Bicycle <i class="fa fa-bicycle"></i></button>
                                             </form>
                                           <!-- /form -->
 
@@ -217,15 +217,15 @@
                                                     <?php while($bicycle = mysql_fetch_array($shop_bicycles)):?>
 
                                                         <tr>
-                                                            <td><?php echo $bicycle[3];//Name?></td>
-                                                            <td><?php echo $bicycle[12];//Brand?></td>
-                                                            <td><?php echo $bicycle[14];//Type?></td>
-                                                            <td><?php echo $bicycle[6];//Gear Number?></td>
-                                                            <td><?php echo $bicycle[7];//Wheel Size?></td>
-                                                            <td><?php echo $bicycle[8];//Rent Price Hour?></td>
-                                                            <td><?php echo $bicycle[9];//Rent Discount Hour?></td>
-                                                            <td><?php echo $bicycle[10];//Rent Discount Percent?></td>
-                                                            <td><a href="delete-bicycle.php?id=<?php echo $bicycle[2];?>"> Remove <i class="fa fa-times"></i></a></td>
+                                                            <td width="35%"><?php echo $bicycle[3];//Name?></td>
+                                                            <td width="19%"><?php echo $bicycle[12];//Brand?></td>
+                                                            <td width="18%"><?php echo $bicycle[14];//Type?></td>
+                                                            <td width="3%"><?php echo $bicycle[6];//Gear Number?></td>
+                                                            <td width="3%"><?php echo $bicycle[7];//Wheel Size?></td>
+                                                            <td width="3%"><?php echo $bicycle[8];//Rent Price Hour?></td>
+                                                            <td width="3%"><?php echo $bicycle[9];//Rent Discount Hour?></td>
+                                                            <td width="3%"><?php echo $bicycle[10];//Rent Discount Percent?></td>
+                                                            <td width="11%"><a href="delete-bicycle.php?id=<?php echo $bicycle[2];?>" class="remove"> Remove <i class="fa fa-times"></i></a></td>
                                                         </tr>
 
                                                     <?php endwhile;?>

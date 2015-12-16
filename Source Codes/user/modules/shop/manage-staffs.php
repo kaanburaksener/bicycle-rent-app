@@ -129,7 +129,7 @@
                                                
                                                 <input type="hidden" id="bicycle-outlet-id" name="bicycle-outlet-id" class="form-control" value="<?php echo($shop['id']);?>">
 
-                                                <button type="submit" class="btn btn-custom-save">Add Staff <i class="fa fa-user-plus fa-1x"></i></button>
+                                                <button type="submit" class="btn btn-custom4">Add Staff <i class="fa fa-user-plus fa-1x"></i></button>
                                             </form>
                                           <!-- /form -->
 
@@ -168,7 +168,7 @@
                                                             <td><?php echo $staff["first_name"]." ".$staff["last_name"];?></td> 
                                                             <td><?php echo $staff["email"];?></td> 
                                                             <td><?php echo $staff[8];//Staff Role?></td>
-                                                            <td><a href="delete-staff.php?id=<?php echo $staff[0]; ?>"> Remove <i class="fa fa-times"></i></a></td>
+                                                            <td style="width:91px"><a href="delete-staff.php?id=<?php echo $staff[0]; ?>" class="remove"> Remove <i class="fa fa-times"></i></a></td>
                                                         </tr>
 
                                                     <?php endwhile;?>

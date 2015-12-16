@@ -107,7 +107,7 @@
 
                                 <input type="hidden" id="bicycle-info-id" name="bicycle-info-id" class="form-control" value="<?php echo($order['bicycle_info_id']);?>">
 
-                                <button type="submit" class="btn btn-custom-save">Finalize <i class="fa fa-check"></i></button>
+                                <button type="submit" class="btn btn-custom4">Finalize <i class="fa fa-check"></i></button>
                             </form>
                           <!-- /form -->
                         </div>

@@ -95,7 +95,7 @@
 
                                 <input type="hidden" id="id" name="id" class="form-control" value="<?php echo($shop['id']);?>">
 
-                                <button type="submit" class="btn btn-custom-save">Update</button>
+                                <button type="submit" class="btn btn-custom3">Update</button>
                             </form>
                           <!-- /form -->
                         </div>

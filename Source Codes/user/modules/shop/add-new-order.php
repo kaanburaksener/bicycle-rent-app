@@ -133,7 +133,7 @@
                                                     </select>
                                                 </div>
 
-                                                <button type="submit" class="btn btn-custom-save">Create Order <i class="fa fa-plus fa-1x"></i></button>
+                                                <button type="submit" class="btn btn-custom4">Create Order <i class="fa fa-plus fa-1x"></i></button>
                                             </form>
                                           <!-- /form -->
 
@@ -213,7 +213,7 @@
                                                         </select>
                                                     </div>
 
-                                                    <button type="submit" class="btn btn-custom-save">Create Order <i class="fa fa-plus fa-1x"></i></button>
+                                                    <button type="submit" class="btn btn-custom4">Create Order <i class="fa fa-plus fa-1x"></i></button>
                                                 </form>
                                               <!-- /form -->
 
@@ -223,7 +223,7 @@
 
                                                     <div class="form-group input-group">
                                                         <input type="text" id="phone" name="phone" class="form-control" placeholder="Please enter the phone number of the customer...">
-                                                        <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
+                                                        <span class="input-group-btn"><button class="btn btn-default" style="border: 1px solid #ccc!important;" type="button"><i class="fa fa-search"></i></button></span>
                                                     </div>
                                                 
                                                 </form>
@@ -267,7 +267,7 @@
                                                             <td><?php echo $order["first_name"]." ".$order["last_name"];?></td>
                                                             <td><?php echo $order["name"]." - ".$order[23];?></td>
                                                             <td><?php echo convertDateFormat($order["rented_time"]);?></td>
-                                                            <td><a href="finalize-order.php?id=<?php echo $order[0];?>"> Finalize <i class="fa fa-check"></i></a></td>
+                                                            <td width="95px"><a href="finalize-order.php?id=<?php echo $order[0];?>" class="finalize"> Finalize <i class="fa fa-check"></i></a></td>
                                                         </tr>
 
                                                     <?php endwhile;?>

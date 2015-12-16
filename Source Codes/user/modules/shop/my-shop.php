@@ -103,18 +103,18 @@
                                             <hr>
 
                                             <h4>Staff</h4>
-                                            <ul class="no-padding">
+                                            <ul id="staff-list" class="no-padding">
                                                 <?php $shop_staffs = getShopStaffs($shop["id"]);?>
                                                 <?php while($staff = mysql_fetch_array($shop_staffs)):?>
 
-                                                    <li><strong><?php echo $staff["first_name"]." ".$staff["last_name"];?></strong>  <?php echo $staff[8];?></li>
+                                                    <li><strong><?php echo $staff["first_name"]." ".$staff["last_name"];?></strong>  <span class="role"><?php echo $staff[8];?></span></li>
 
                                                 <?php endwhile;?>
                                             </ul>
 
                                             <hr>
 
-                                            <a href="shop.php" class="btn btn-default">Go to shop</a>
+                                            <a href="shop.php" class="btn btn-default btn-custom2">Go to shop</a>
                                         </div>
                                     </div>
                                 </div>

@@ -86,7 +86,10 @@
     }
 
     function getShopStaffs($shop_id) {
-      $query = "SELECT * FROM bicycle_outlet_user_info INNER JOIN user_role ON bicycle_outlet_user_info.user_role_id = user_role.id INNER JOIN bicycle_outlet ON bicycle_outlet_user_info.bicycle_outlet_id = bicycle_outlet.id AND bicycle_outlet_id = '".$shop_id."' ORDER BY user_role.name ASC, bicycle_outlet_user_info.first_name ASC";
+      $query = "SELECT * FROM bicycle_outlet_user_info 
+                INNER JOIN user_role ON bicycle_outlet_user_info.user_role_id = user_role.id 
+                INNER JOIN bicycle_outlet ON bicycle_outlet_user_info.bicycle_outlet_id = bicycle_outlet.id 
+                WHERE bicycle_outlet_id = '".$shop_id."' ORDER BY user_role.name ASC, bicycle_outlet_user_info.first_name ASC";
       $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
 
       return $result;
@@ -132,17 +135,23 @@
     }
 
     function getAvailableBicycles($shop_id) {
-      $query = "SELECT * FROM bicycle_info INNER JOIN bicycle_brand ON bicycle_info.brand_id = bicycle_brand.id INNER JOIN bicycle_type ON bicycle_info.type_id = bicycle_type.id AND bicycle_info.id IN 
-                  (SELECT bicycle_id FROM bicycle_disposal WHERE bicycle_id NOT IN (SELECT bicycle_info_id FROM bicycle_rental_order) AND outlet_id = '".$shop_id."' 
-                   UNION
-                   SELECT bicycle_id FROM bicycle_disposal WHERE bicycle_id NOT IN (SELECT bicycle_id FROM bicycle_disposal INNER JOIN bicycle_rental_order ON bicycle_disposal.bicycle_id = bicycle_rental_order.bicycle_info_id AND bicycle_rental_order.returned_time IS NULL) AND bicycle_disposal.outlet_id = '".$shop_id."')";
+      $query = "SELECT * FROM bicycle_info 
+                INNER JOIN bicycle_brand ON bicycle_info.brand_id = bicycle_brand.id 
+                INNER JOIN bicycle_type ON bicycle_info.type_id = bicycle_type.id AND bicycle_info.id IN 
+                (SELECT bicycle_id FROM bicycle_disposal WHERE bicycle_id NOT IN (SELECT bicycle_info_id FROM bicycle_rental_order) AND outlet_id = '".$shop_id."' 
+                UNION
+                SELECT bicycle_id FROM bicycle_disposal WHERE bicycle_id NOT IN (SELECT bicycle_id FROM bicycle_disposal INNER JOIN bicycle_rental_order ON bicycle_disposal.bicycle_id = bicycle_rental_order.bicycle_info_id AND bicycle_rental_order.returned_time IS NULL) AND bicycle_disposal.outlet_id = '".$shop_id."')";
       $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
 
       return $result;
     }
 
     function getShopBicycles($shop_id) {
-      $query = "SELECT * FROM bicycle_disposal INNER JOIN bicycle_info ON bicycle_disposal.bicycle_id = bicycle_info.id INNER JOIN bicycle_brand ON bicycle_info.brand_id = bicycle_brand.id INNER JOIN bicycle_type ON bicycle_info.type_id = bicycle_type.id AND bicycle_disposal.outlet_id = '".$shop_id."'";
+      $query = "SELECT * FROM bicycle_disposal 
+                INNER JOIN bicycle_info ON bicycle_disposal.bicycle_id = bicycle_info.id 
+                INNER JOIN bicycle_brand ON bicycle_info.brand_id = bicycle_brand.id 
+                INNER JOIN bicycle_type ON bicycle_info.type_id = bicycle_type.id 
+                WHERE bicycle_disposal.outlet_id = '".$shop_id."'";
       $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
 
       return $result;
@@ -235,11 +244,13 @@
   }
 
   function getUnfinalizedOrders($outlet_id) {
-    $query = "SELECT * FROM bicycle_rental_order INNER JOIN bicycle_outlet_user_info ON bicycle_rental_order.rented_bicycle_outlet_user_id = bicycle_outlet_user_info.id 
-                                                 INNER JOIN outlet_customer ON bicycle_rental_order.outlet_customer_id = outlet_customer.id
-                                                 INNER JOIN bicycle_info ON bicycle_rental_order.bicycle_info_id = bicycle_info.id
-                                                 INNER JOIN bicycle_brand ON bicycle_info.brand_id = bicycle_brand.id 
-                                                 WHERE bicycle_rental_order.rented_bicycle_outlet_user_id IN (SELECT id FROM bicycle_outlet_user_info WHERE bicycle_outlet_id = '".$outlet_id."') AND bicycle_rental_order.returned_bicycle_outlet_user_id IS NULL";
+    $query = "SELECT * FROM bicycle_rental_order 
+              INNER JOIN bicycle_outlet_user_info ON bicycle_rental_order.rented_bicycle_outlet_user_id = bicycle_outlet_user_info.id 
+              INNER JOIN outlet_customer ON bicycle_rental_order.outlet_customer_id = outlet_customer.id
+              INNER JOIN bicycle_info ON bicycle_rental_order.bicycle_info_id = bicycle_info.id
+              INNER JOIN bicycle_brand ON bicycle_info.brand_id = bicycle_brand.id 
+              WHERE bicycle_rental_order.rented_bicycle_outlet_user_id IN (SELECT id FROM bicycle_outlet_user_info WHERE bicycle_outlet_id = '".$outlet_id."') AND bicycle_rental_order.returned_bicycle_outlet_user_id IS NULL";
+    
     $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
 
     return $result;
@@ -253,8 +264,96 @@
   }
 
   function finalizeOrder($id, $returned_bicycle_outlet_user_id, $returned_time, $hour_discount, $sum_before_discount, $total_order_sum) {
-      $query = "UPDATE bicycle_rental_order SET returned_bicycle_outlet_user_id='".$returned_bicycle_outlet_user_id."', returned_time='".$returned_time."', hour_discount='".$hour_discount."', sum_before_discount='".$sum_before_discount."', total_order_sum='".$total_order_sum."' WHERE id='".$id."'";    
-      $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+    $query = "UPDATE bicycle_rental_order SET returned_bicycle_outlet_user_id='".$returned_bicycle_outlet_user_id."', returned_time='".$returned_time."', hour_discount='".$hour_discount."', sum_before_discount='".$sum_before_discount."', total_order_sum='".$total_order_sum."' WHERE id='".$id."'";    
+    $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+  }
+
+  /***************************
+  STATISTICS
+  ****************************/
+
+  /* Counting average time each bicycle brand is rented */
+  function getAllRentedBicyclesAverageTimeByBrand() {
+    $query = "SELECT bb.name, COUNT(bro.id) AS rent_times_number, ROUND(AVG(TIME_TO_SEC(TIMEDIFF(bro.returned_time, bro.rented_time))/(60*60))) AS average_rent_time FROM bicycle_rental_order AS bro 
+              INNER JOIN bicycle_info AS bi ON bro.bicycle_info_id = bi.id
+              INNER JOIN bicycle_brand AS bb ON bi.brand_id = bb.id
+              GROUP BY bb.name
+              ORDER BY rent_times_number, average_rent_time";
+    
+    $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+    return $result;
+  }
+
+  /* Counting average time each bicycle type is rented */
+  function getAllRentedBicyclesAverageTimeByType() {
+    $query = "SELECT bt.name, COUNT(bro.id) AS rent_times_number, ROUND(AVG(TIME_TO_SEC(TIMEDIFF(bro.returned_time, bro.rented_time))/(60*60))) AS average_rent_time FROM bicycle_rental_order AS bro 
+              INNER JOIN bicycle_info AS bi ON bro.bicycle_info_id = bi.id
+              INNER JOIN bicycle_type AS bt ON bi.type_id = bt.id
+              GROUP BY bt.name
+              ORDER BY rent_times_number, average_rent_time";
+    
+    $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+    return $result;
+  }
+
+
+  /* Counting average time each bicycle type of a given brand is rented */
+  function getAllRentedBicyclesAverageTimeByBrandId($brand_id) {
+    $query = "SELECT bb.name, COUNT(bro.id) AS rent_times_number, ROUND(AVG(TIME_TO_SEC(TIMEDIFF(bro.returned_time, bro.rented_time))/(60*60))) AS average_rent_time FROM bicycle_rental_order AS bro 
+              INNER JOIN bicycle_info AS bi ON bro.bicycle_info_id = bi.id
+              INNER JOIN bicycle_type AS bt ON bi.type_id = bt.id
+              INNER JOIN bicycle_brand AS bb ON bi.brand_id = bb.id
+              WHERE bb.id = '".$brand_id."'
+              GROUP BY bt.name
+              ORDER BY rent_times_number, average_rent_time";
+    
+    $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+    return $result;
+  }
+
+  /* Counting average time each bicycle brand of a given type is rented */
+  function getAllRentedBicyclesAverageTimeByTypeId($type_id) {
+    $query = "SELECT bt.name, COUNT(bro.id) AS rent_times_number, ROUND(AVG(TIME_TO_SEC(TIMEDIFF(bro.returned_time, bro.rented_time))/(60*60))) AS average_rent_time FROM bicycle_rental_order AS bro 
+              INNER JOIN bicycle_info AS bi ON bro.bicycle_info_id = bi.id
+              INNER JOIN bicycle_type AS bt ON bi.type_id = bt.id
+              INNER JOIN bicycle_brand AS bb ON bi.brand_id = bb.id
+              WHERE bt.id = '".$type_id."'
+              GROUP BY bb.name
+              ORDER BY rent_times_number, average_rent_time";
+    
+    $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+    return $result;
+  }
+
+  /* Counting rental stats for an outlet as a whole */
+  function getAllRentalStatsByOutletId($outlet_id) {
+    $query = "SELECT bo.name, COUNT(bro.id) AS finished_rent_times_number, SUM(total_order_sum) AS outlet_revenue FROM bicycle_rental_order AS bro
+              INNER JOIN bicycle_outlet_user_info AS boui ON bro.rented_bicycle_outlet_user_id = boui.id
+              INNER JOIN bicycle_outlet AS bo ON boui.bicycle_outlet_id = bo.id
+              WHERE bro.returned_time IS NOT NULL AND bro.rented_bicycle_outlet_user_id IN (SELECT id FROM bicycle_outlet_user_info WHERE bicycle_outlet_id = '".$outlet_id."')
+              GROUP BY bo.name
+              ORDER BY finished_rent_times_number, outlet_revenue";
+    
+    $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+    return $result;
+  }
+
+  /* Query indicating the performance of workers (the number of finished rents done and the amount of money yielded from these rents) */
+  function getAllStaffStats($outlet_id) {
+    $query = "SELECT boui.id, boui.first_name, boui.last_name, COUNT(rented_time) AS rent_quantity, SUM(total_order_sum) AS revenue FROM bicycle_rental_order AS bro 
+              INNER JOIN bicycle_outlet_user_info AS boui ON bro.rented_bicycle_outlet_user_id = boui.id 
+              WHERE returned_time IS NOT NULL AND boui.bicycle_outlet_id = '".$outlet_id."'
+              GROUP BY boui.id, boui.first_name, boui.last_name 
+              ORDER BY revenue";
+    
+    $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+    return $result;
   }
 
   /***************************
@@ -268,8 +367,9 @@
       return $date;
     }
 
+    //Calculates the total rented hours
     function timeDifference($firstTime, $lastTime) {
-      $hours = round((strtotime($lastTime) - strtotime($firstTime))/(60*60));
+      $hours = round((strtotime($lastTime) - strtotime($firstTime)) / (60 * 60));
 
       return $hours;
     }
