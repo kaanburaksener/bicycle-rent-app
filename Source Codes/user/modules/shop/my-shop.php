@@ -97,12 +97,12 @@
                                     <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
                                         <div class="panel-body">
 
-                                            <h4>Address</h4>
+                                            <h4>Address <i class="fa fa-map-marker"></i></h4>
                                             <p><?php echo $shop["address"];?> </p>
 
                                             <hr>
 
-                                            <h4>Staff</h4>
+                                            <h4>Staff <i class="fa fa-users"></i></h4>
                                             <ul id="staff-list" class="no-padding">
                                                 <?php $shop_staffs = getShopStaffs($shop["id"]);?>
                                                 <?php while($staff = mysql_fetch_array($shop_staffs)):?>

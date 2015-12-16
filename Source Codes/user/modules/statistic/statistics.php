@@ -98,7 +98,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="../shop/add-new-shop.php"><i class="fa fa-fw fa-plus"></i> New Shop</a>
+                                    <a href="../shop/shop.php"><i class="fa fa-chevron-right"></i> Go To Shop</a>
                                 </li>
                             </ul>
                         <?php elseif ($user_role == 'No Role'): ?>
@@ -113,6 +113,10 @@
                             <ul id="shops_for_staff" class="collapse">
                                 <li>
                                     <a href="../shop/my-shop.php"><i class="fa fa-fw fa-code-fork"></i> My Shop</a>
+                                </li>
+
+                                <li>
+                                    <a href="../shop/shop.php"><i class="fa fa-chevron-right"></i> Go To Shop</a>
                                 </li>
                             </ul>
                         <?php endif; ?>

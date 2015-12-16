@@ -61,7 +61,7 @@
                 <tbody>
                     <?php $lineNumber = 1;?>
                     <?php $allBicycles = getAllBicycles();?>
-                    <?php while($bicycle = mysql_fetch_array($allBicycleBrands)):?>
+                    <?php while($bicycle = mysql_fetch_array($allBicycles)):?>
 
                     <tr>
                         <th scope="row"><?php echo $lineNumber; ?></th>
@@ -73,20 +73,20 @@
                             $bicycleBrand = mysql_fetch_array($bicycleBrand);
                         ?>
 
-                        <td><?php echo $bicycleBrand; ?></td>
+                        <td><?php echo $bicycleBrand["name"]; ?></td>
 
                         <?php 
                             $bicycleType = getBicycleType($bicycle['type_id']); 
                             $bicycleType = mysql_fetch_array($bicycleType);
                         ?>
 
-                        <td><?php echo $bicycleType; ?></td>
+                        <td><?php echo $bicycleType["name"]; ?></td>
 
                         <td><?php echo $bicycle['gear_number']; ?></td>
                         <td><?php echo $bicycle['wheel_size']; ?></td>
-                        <td><?php echo $bicycle['rent_price_hour']." rub".; ?></td>
+                        <td><?php echo $bicycle['rent_price_hour']." rub"; ?></td>
                         <td><?php echo $bicycle['rent_discount_hour']; ?></td>
-                        <td><?php echo $bicycle['rent_discount_percent']."%".; ?></td>
+                        <td><?php echo $bicycle['rent_discount_percent']."%"; ?></td>
                         <td class="edit-option"><a href="edit-bicycle.php?id=<?php echo $bicycle['id']; ?>"><i class="fa fa-pencil"></i> Edit</a></td>
                         <td class="delete-option"><a href="delete-bicycle.php?id=<?php echo $bicycle['id']; ?>"><i class="fa fa-trash"></i> Delete</a></td>
                     </tr>

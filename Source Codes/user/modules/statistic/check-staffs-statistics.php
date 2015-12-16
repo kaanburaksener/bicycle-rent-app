@@ -63,7 +63,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['user_role'])) {
                 $name = $staff['first_name'].' '.$staff['last_name'];
                 $rent_quantity = $staff['rent_quantity'];
                 $revenue = $staff['revenue'];
-                echo "['$name', '$rent_quantity', '$revenue'],";
+                echo "['$name', '$revenue', '$rent_quantity'],";
             }
 
           ?>
@@ -73,8 +73,8 @@ if (isset($_SESSION['email']) && isset($_SESSION['user_role'])) {
           width: 900,
           bars: 'horizontal', // Required for Material Bar Charts.
           series: {
-            0: { axis: 'completed_orders' }, // Bind series 0 to an axis named 'distance'.
-            1: { axis: 'revenue' } // Bind series 1 to an axis named 'brightness'.
+            0: { axis: 'revenue' }, // Bind series 0 to an axis named 'distance'.
+            1: { axis: 'completed_orders' } // Bind series 1 to an axis named 'brightness'.
           },
           axes: {
             x: {
@@ -142,7 +142,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['user_role'])) {
                                 </li>
 
                                 <li>
-                                    <a href="../shop/add-new-shop.php"><i class="fa fa-fw fa-plus"></i> New Shop</a>
+                                    <a href="../shop/shop.php">Go To Shop <i class="fa fa-chevron-right"></i></a>
                                 </li>
                             </ul>
                         <?php elseif ($user_role == 'No Role'): ?>
@@ -157,6 +157,10 @@ if (isset($_SESSION['email']) && isset($_SESSION['user_role'])) {
                             <ul id="shops_for_staff" class="collapse">
                                 <li>
                                     <a href="../shop/my-shop.php"><i class="fa fa-fw fa-code-fork"></i> My Shop</a>
+                                </li>
+
+                                <li>
+                                    <a href="../shop/shop.php">Go To Shop <i class="fa fa-chevron-right"></i></a>
                                 </li>
                             </ul>
                         <?php endif; ?>

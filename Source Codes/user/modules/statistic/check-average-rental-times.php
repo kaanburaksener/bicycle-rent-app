@@ -21,6 +21,7 @@
                 $type_id = $_GET["type-id"];
                 $all_rented_bicycles = getAllRentedBicyclesAverageTimeByTypeId($type_id);
                 break;
+            default:
         }
     }
 ?>
@@ -73,7 +74,7 @@
                 $name = $rented_bicycle['name'];
                 $rent_times_number = $rented_bicycle['rent_times_number'];
                 $average_rent_time = $rented_bicycle['average_rent_time'];
-                echo "['$name', '$average_rent_time', '$rent_times_number'],";
+                echo "['$name', '$rent_times_number', '$average_rent_time'],";
             }
           ?>
         ]);
@@ -82,13 +83,13 @@
           width: 900,
           bars: 'horizontal', // Required for Material Bar Charts.
           series: {
-            0: { axis: 'average_rent_time' }, // Bind series 0 to an axis named 'distance'.
-            1: { axis: 'rent_times' } // Bind series 1 to an axis named 'brightness'.
+            0: { axis: 'rent_times' }, // Bind series 0 to an axis named 'distance'.
+            1: { axis: 'average_rent_time' } // Bind series 1 to an axis named 'brightness'.
           },
           axes: {
             x: {
               average_rent_time: {label: 'average rent time (hours)'}, // Bottom x-axis.
-              rent_times: {side: 'top', label: 'rent times'} // Top x-axis.
+              rent_times: {side: 'top', label: 'rent times (number)'} // Top x-axis.
             }
           }
         };
@@ -163,7 +164,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="../shop/add-new-shop.php"><i class="fa fa-fw fa-plus"></i> New Shop</a>
+                                    <a href="../shop/shop.php">Go To Shop <i class="fa fa-chevron-right"></i></a>
                                 </li>
                             </ul>
                         <?php elseif ($user_role == 'No Role'): ?>
@@ -178,6 +179,10 @@
                             <ul id="shops_for_staff" class="collapse">
                                 <li>
                                     <a href="../shop/my-shop.php"><i class="fa fa-fw fa-code-fork"></i> My Shop</a>
+                                </li>
+
+                                <li>
+                                    <a href="../shop/shop.php">Go To Shop <i class="fa fa-chevron-right"></i></a>
                                 </li>
                             </ul>
                         <?php endif; ?>
@@ -238,7 +243,7 @@
 
                                         <select name="brand-id" class="form-control">
 
-                                        <?php $allBicycleBrands = getAllBicycleBrands();?>
+                                        <?php $allBicycleBrands = getAllBicycleBrandsByShop($shop["id"]);?>
                                         <?php while($bicycleBrand = mysql_fetch_array($allBicycleBrands)):?>
 
                                             <option value="<?php echo $bicycleBrand['id']; ?>"><?php echo $bicycleBrand['name']; ?></option>
@@ -252,7 +257,7 @@
 
                                         <select name="type-id" class="form-control">
 
-                                        <?php $allBicycleTypes = getAllBicycleTypes();?>
+                                        <?php $allBicycleTypes = getAllBicycleTypesByShop($shop["id"]);?>
                                         <?php while($bicycleType = mysql_fetch_array($allBicycleTypes)):?>
 
                                             <option value="<?php echo $bicycleType['id']; ?>"><?php echo $bicycleType['name']; ?></option>

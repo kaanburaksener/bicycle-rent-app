@@ -96,9 +96,6 @@
                                 <li>
                                     <a href="modules/bicycle/bicycle.php"><i class="fa fa-list"></i> View All Bicycles</a>
                                 </li>
-                                <li>
-                                    <a href="modules/bicycle/add-bicycle.php"><i class="fa fa-plus"></i> Add a New Bicycle</a>
-                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

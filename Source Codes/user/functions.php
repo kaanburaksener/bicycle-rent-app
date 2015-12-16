@@ -185,6 +185,32 @@
       return $result;
     }
 
+    function getAllBicycleBrandsByShop($shop_id) {
+      $query = "SELECT DISTINCT bb.id, bb.name FROM bicycle_brand AS bb 
+                INNER JOIN bicycle_info AS bi ON bi.brand_id = bb.id 
+                INNER JOIN bicycle_rental_order AS bro ON bro.bicycle_info_id = bi.id 
+                INNER JOIN bicycle_outlet_user_info AS boui ON bro.rented_bicycle_outlet_user_id = boui.id 
+                INNER JOIN bicycle_outlet AS bo ON boui.bicycle_outlet_id = bo.id 
+                WHERE bi.id IN (SELECT bicycle_info_id FROM bicycle_rental_order WHERE returned_time IS NOT NULL) AND bo.id = '".$shop_id."'
+                ORDER BY name ASC";
+      $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+      return $result;
+    }
+
+    function getAllBicycleTypesByShop($shop_id) {
+      $query = "SELECT DISTINCT bt.id, bt.name FROM bicycle_type AS bt 
+                INNER JOIN bicycle_info AS bi ON bi.type_id = bt.id 
+                INNER JOIN bicycle_rental_order AS bro ON bro.bicycle_info_id = bi.id 
+                INNER JOIN bicycle_outlet_user_info AS boui ON bro.rented_bicycle_outlet_user_id = boui.id 
+                INNER JOIN bicycle_outlet AS bo ON boui.bicycle_outlet_id = bo.id 
+                WHERE bi.id IN (SELECT bicycle_info_id FROM bicycle_rental_order WHERE returned_time IS NOT NULL) AND bo.id = '".$shop_id."'
+                ORDER BY name ASC";
+      $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);
+
+      return $result;
+    }
+
     function updateBicycle($id, $name, $brand_id, $type_id, $gear_number, $wheel_size, $rent_price_hour, $rent_discount_hour, $rent_discount_percent) {
       $query = "UPDATE bicycle_info SET name='".$name."', brand_id='".$brand_id."', type_id='".$type_id."', gear_number='".$gear_number."', wheel_size='".$wheel_size."', rent_price_hour='".$rent_price_hour."', rent_discount_hour='".$rent_discount_hour."', rent_discount_percent='".$rent_discount_percent."'  WHERE id='".$id."'";
       $result = mysql_query($query) or trigger_error(mysql_error()." ".$query);

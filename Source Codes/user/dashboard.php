@@ -90,14 +90,14 @@
 
                     <li>
                         <?php if ($user_role == 'Manager'): ?>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#shops_for_manager"><i class="fa fa-fw fa-table"></i> Shops <i class="fa fa-fw fa-caret-down"></i></a>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#shops_for_manager"><i class="fa fa-shopping-bag"></i> Shop <i class="fa fa-fw fa-caret-down"></i></a>
                             <ul id="shops_for_manager" class="collapse">
                                 <li>
                                     <a href="modules/shop/my-shop.php"><i class="fa fa-fw fa-code-fork"></i> My Shop</a>
                                 </li>
 
                                 <li>
-                                    <a href="modules/shop/add-new-shop.php"><i class="fa fa-fw fa-plus"></i> New Shop</a>
+                                    <a href="modules/shop/shop.php"><i class="fa fa-chevron-right"></i> Go To Shop</a>
                                 </li>
                             </ul>
                         <?php elseif ($user_role == 'No Role'): ?>
@@ -112,6 +112,10 @@
                             <ul id="shops_for_staff" class="collapse">
                                 <li>
                                     <a href="modules/shop/my-shop.php"><i class="fa fa-fw fa-code-fork"></i> My Shop</a>
+                                </li>
+
+                                <li>
+                                    <a href="modules/shop/shop.php"><i class="fa fa-chevron-right"></i> Go To Shop</a>
                                 </li>
                             </ul>
                         <?php endif; ?>
