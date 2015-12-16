@@ -40,6 +40,8 @@
     
     if (isset($_SESSION['email'])) {
         $email = $_SESSION['email']; 
+        $user_role = $_SESSION['user_role'];
+
         $user = getUser($email); 
         $user = mysql_fetch_array($user);
     }
@@ -60,37 +62,9 @@
                 </button>
                 <a class="navbar-brand" href="dashboard.php"><i class="fa fa-bicycle fa-2x"></i> Dashboard</a>
             </div>
-            
+
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo $user["first_name"]." ".$user["last_name"];?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
@@ -115,16 +89,36 @@
                     </li>
 
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-table"></i> Projects <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="admin/modules/project/my-projects.php"><i class="fa fa-fw fa-code-fork"></i> My Projects</a>
-                            </li>
+                        <?php if ($user_role == 'Manager'): ?>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#shops_for_manager"><i class="fa fa-shopping-bag"></i> Shop <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="shops_for_manager" class="collapse">
+                                <li>
+                                    <a href="modules/shop/my-shop.php"><i class="fa fa-fw fa-code-fork"></i> My Shop</a>
+                                </li>
 
-                            <li>
-                                <a href="admin/modules/project/add-project.php"><i class="fa fa-fw fa-plus"></i> New Project</a>
-                            </li>
-                        </ul>
+                                <li>
+                                    <a href="modules/shop/shop.php"><i class="fa fa-chevron-right"></i> Go To Shop</a>
+                                </li>
+                            </ul>
+                        <?php elseif ($user_role == 'No Role'): ?>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#shops_for_no_role"><i class="fa fa-fw fa-table"></i> Shops <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="shops_for_no_role" class="collapse">
+                                <li>
+                                    <a href="modules/shop/add-new-shop.php"><i class="fa fa-fw fa-plus"></i> New Shop</a>
+                                </li>
+                            </ul>
+                        <?php else: ?>
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#shops_for_staff"><i class="fa fa-fw fa-table"></i> Shops <i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="shops_for_staff" class="collapse">
+                                <li>
+                                    <a href="modules/shop/my-shop.php"><i class="fa fa-fw fa-code-fork"></i> My Shop</a>
+                                </li>
+
+                                <li>
+                                    <a href="modules/shop/shop.php"><i class="fa fa-chevron-right"></i> Go To Shop</a>
+                                </li>
+                            </ul>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
